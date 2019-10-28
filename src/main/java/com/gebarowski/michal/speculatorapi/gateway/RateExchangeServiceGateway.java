@@ -1,6 +1,6 @@
 package com.gebarowski.michal.speculatorapi.gateway;
 
-import com.gebarowski.michal.speculatorapi.model.CurrencyExchangeRateResponse;
+import com.gebarowski.michal.speculatorapi.response.ExchangeRateResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Currency;
 
 @Service
-public class RateExchangeServiceGatewy {
+public class RateExchangeServiceGateway {
 
     private final RestTemplate template = new RestTemplate();
 
@@ -20,7 +20,7 @@ public class RateExchangeServiceGatewy {
     private String url;
 
 
-    public CurrencyExchangeRateResponse getCurrencyExchangeRate(final Currency currencyFrom, final Currency currencyTo) {
+    public ExchangeRateResponse getCurrencyExchangeRate(final Currency currencyFrom, final Currency currencyTo) {
         return this.template.getForObject(
                 UriComponentsBuilder.fromHttpUrl(url)
                         .queryParam("from_currency", currencyFrom)
@@ -28,6 +28,6 @@ public class RateExchangeServiceGatewy {
                         .queryParam("apikey", apiKey)
                         .build()
                         .toUri(),
-                CurrencyExchangeRateResponse.class);
+                ExchangeRateResponse.class);
     }
 }
