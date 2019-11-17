@@ -11,13 +11,16 @@ public class ExchangeRateService {
 
     private final RateExchangeServiceGateway rateExchangeServiceGateway;
 
-
     public ExchangeRateService(
             RateExchangeServiceGateway rateExchangeServiceGateway) {
         this.rateExchangeServiceGateway = rateExchangeServiceGateway;
     }
 
-    public ExchangeRateModel getExchangeRate(final Currency currencyFrom, final Currency currencyTo) {
-        return rateExchangeServiceGateway.getCurrencyExchangeRate(currencyFrom, currencyTo).getExchangeRateModel();
+    public ExchangeRateModel getExchangeRate(final String currencyFrom, final String currencyTo) {
+        final Currency from = Currency.getInstance(currencyFrom);
+        final Currency to = Currency.getInstance(currencyTo);
+
+        return rateExchangeServiceGateway.getCurrencyExchangeRate(from, to)
+                .getExchangeRateModel();
     }
 }

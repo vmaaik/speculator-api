@@ -13,6 +13,12 @@ public class RateExchangeServiceGateway {
 
     private final RestTemplate template = new RestTemplate();
 
+    private final String QUERY_PARAM_FROM = "from_currency";
+
+    private final String QUERY_PARAM_TO = "to_currency";
+
+    private final String API_KEY = "apikey";
+
     @Value("${alphavantage.apiKey}")
     private String apiKey;
 
@@ -21,11 +27,12 @@ public class RateExchangeServiceGateway {
 
 
     public ExchangeRateResponse getCurrencyExchangeRate(final Currency currencyFrom, final Currency currencyTo) {
+
         return this.template.getForObject(
                 UriComponentsBuilder.fromHttpUrl(url)
-                        .queryParam("from_currency", currencyFrom)
-                        .queryParam("to_currency", currencyTo)
-                        .queryParam("apikey", apiKey)
+                        .queryParam(QUERY_PARAM_FROM, currencyFrom)
+                        .queryParam(QUERY_PARAM_TO, currencyTo)
+                        .queryParam(API_KEY, apiKey)
                         .build()
                         .toUri(),
                 ExchangeRateResponse.class);
