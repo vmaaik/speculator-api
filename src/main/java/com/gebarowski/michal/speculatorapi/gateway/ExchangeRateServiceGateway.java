@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Currency;
 
 @Service
-public class RateExchangeServiceGateway {
+public class ExchangeRateServiceGateway {
 
     private final RestTemplate template = new RestTemplate();
 
