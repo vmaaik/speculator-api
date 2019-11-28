@@ -7,8 +7,8 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Date;
 
 // TODO write a big decimal serializer
 
@@ -28,7 +28,7 @@ public class ExchangeRateModel {
 
     @JsonAlias("6. Last Refreshed")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    Date lastRefreshed;
+    LocalDateTime lastRefreshed;
 
     @JsonAlias("8. Bid Price")
     BigDecimal bidPrice;
