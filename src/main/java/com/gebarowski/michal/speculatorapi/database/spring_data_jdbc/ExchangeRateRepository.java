@@ -1,4 +1,4 @@
-package com.gebarowski.michal.speculatorapi.data;
+package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
 
 public interface ExchangeRateRepository {
 
