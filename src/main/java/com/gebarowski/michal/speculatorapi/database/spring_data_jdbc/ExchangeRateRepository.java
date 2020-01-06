@@ -2,7 +2,7 @@ package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
 
 public interface ExchangeRateRepository {
 
-    ExchangeRateEntity save(ExchangeRateEntity exchangeRateEntity);
+    int save(ExchangeRateEntity exchangeRateEntity);
 
     Iterable<ExchangeRateEntity> findAll();
 

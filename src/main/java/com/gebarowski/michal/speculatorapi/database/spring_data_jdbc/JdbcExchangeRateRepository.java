@@ -15,10 +15,9 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
-    public ExchangeRateEntity save(ExchangeRateEntity exchangeRateEntity) {
-        return null;
+    public int save(final ExchangeRateEntity exchangeRateEntity) {
+        return 1;
     }
 
     @Override
@@ -28,16 +27,18 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
 
     @Override
     public ExchangeRateEntity findOne(String id) {
-
-        return jdbcTemplate.queryForObject("select id, dbTest from Test where id=?",
-                this::mapRowToExchangeRateEntity, id);
+        return this.jdbcTemplate.queryForObject("SELECT * FROM EXCHANGE_RATE_HISTORY WHERE ID=?", this::mapRowToExchangeRateEntity, id);
     }
 
-    private ExchangeRateEntity mapRowToExchangeRateEntity(ResultSet resultSet, int rowNumber) throws SQLException {
-
+    private ExchangeRateEntity mapRowToExchangeRateEntity(final ResultSet resultSet, final int rowNumber) throws SQLException {
         return ExchangeRateEntity.builder()
                 .id(resultSet.getLong("id"))
-                .dbTest(resultSet.getString("dbTest"))
+                .currencyCodeFrom(resultSet.getString("currency_code_from"))
+                .currencyCodeTo(resultSet.getString("currency_code_to"))
+                .exchangeRate(resultSet.getString("exchange_rate"))
+                .lastRefreshed(resultSet.getString("last_refreshed"))
+                .bidPrice(resultSet.getString("bid_price"))
+                .askPrice(resultSet.getString("ask_price"))
                 .build();
 
     }

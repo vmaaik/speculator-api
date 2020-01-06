@@ -1,12 +1,20 @@
-DROP TABLE IF EXISTS TEST;
+DROP TABLE IF EXISTS EXCHANGE_RATE_HISTORY;
 
-CREATE TABLE TEST
+CREATE TABLE EXCHANGE_RATE_HISTORY
 
 (
-    id     varchar(11)  NOT NULL,
+    id                 SERIAL PRIMARY KEY,
 
-    dbTest varchar(100) NOT NULL,
+    currency_code_from varchar(100) NOT NULL,
 
-    PRIMARY KEY (id)
+    currency_code_to   varchar(100) NOT NULL,
+
+    exchange_rate      varchar(100) NOT NULL,
+
+    last_refreshed     varchar(100) NOT NULL,
+
+    bid_price          varchar(100) NOT NULL,
+
+    ask_price          varchar(100) NOT NULL
 
 );
