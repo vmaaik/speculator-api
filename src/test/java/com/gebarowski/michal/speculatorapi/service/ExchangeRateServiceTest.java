@@ -39,7 +39,7 @@ class ExchangeRateServiceTest {
         when(this.exchangeRateServiceGateway.getCurrencyExchangeRate(CODE_EURO, CODE_PLN))
                 .thenReturn(buildExchangeRateResponse());
 
-        final ExchangeRateModel response = this.exchangeRateService.getExchangeRate(EUR, PLN);
+        final ExchangeRateModel response = this.exchangeRateService.getCurrentExchangeRate(EUR, PLN);
 
         assertEquals(response, buildExchangeRateModel());
     }
@@ -48,7 +48,7 @@ class ExchangeRateServiceTest {
     void throwsExceptionWhenCurrencyUnsupported() {
 
         assertThrows(CurrencyExchangeException.class, () ->
-                this.exchangeRateService.getExchangeRate(UNSUPPORTED_CURRENCY, PLN)
+                this.exchangeRateService.getCurrentExchangeRate(UNSUPPORTED_CURRENCY, PLN)
         );
     }
 

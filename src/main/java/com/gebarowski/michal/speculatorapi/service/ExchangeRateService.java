@@ -1,5 +1,7 @@
 package com.gebarowski.michal.speculatorapi.service;
 
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateConverter;
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.JdbcExchangeRateRepository;
 import com.gebarowski.michal.speculatorapi.gateway.ExchangeRateServiceGateway;
 import com.gebarowski.michal.speculatorapi.model.ExchangeRateModel;
 import com.gebarowski.michal.speculatorapi.service.exception.CurrencyExchangeException;
@@ -16,18 +18,32 @@ public class ExchangeRateService {
 
     private final ExchangeRateServiceGateway exchangeRateServiceGateway;
 
+    private final JdbcExchangeRateRepository jdbcExchangeRateRepository;
+
+    private final ExchangeRateConverter exchangeRateConverter;
+
     public ExchangeRateService(
-            ExchangeRateServiceGateway exchangeRateServiceGateway) {
+            final ExchangeRateServiceGateway exchangeRateServiceGateway,
+            final JdbcExchangeRateRepository jdbcExchangeRateRepository,
+            final ExchangeRateConverter exchangeRateConverter) {
+
         this.exchangeRateServiceGateway = exchangeRateServiceGateway;
+        this.jdbcExchangeRateRepository = jdbcExchangeRateRepository;
+        this.exchangeRateConverter = exchangeRateConverter;
     }
 
-    public ExchangeRateModel getExchangeRate(final String currencyFrom, final String currencyTo) {
+    public ExchangeRateModel getCurrentExchangeRate(final String currencyFrom, final String currencyTo) {
 
         final Currency from = getCurrencyInstance(currencyFrom);
         final Currency to = getCurrencyInstance(currencyTo);
 
         return exchangeRateServiceGateway.getCurrencyExchangeRate(from, to)
                 .getExchangeRateModel();
+    }
+
+    public ExchangeRateModel getExchangeRate(final Long id) {
+        return this.exchangeRateConverter.fromEntity(
+                this.jdbcExchangeRateRepository.findOne(id));
     }
 
     private Currency getCurrencyInstance(final String currency) {

@@ -20,12 +20,18 @@ public class ExchangeRateController {
     }
 
     @GetMapping(value = "/{currencyFrom}/{currencyTo}")
-    public ResponseEntity<ExchangeRateModel> getExchangeRate(
+    public ResponseEntity<ExchangeRateModel> getCurrentRate(
             @PathVariable final String currencyFrom,
             @PathVariable final String currencyTo) {
 
-        final ExchangeRateModel response = this.exchangeRateService.getExchangeRate(currencyFrom, currencyTo);
+        final ExchangeRateModel response = this.exchangeRateService.getCurrentExchangeRate(currencyFrom, currencyTo);
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ExchangeRateModel> getRate(@PathVariable final Long id) {
+        return ResponseEntity.ok(this.exchangeRateService.getExchangeRate(id));
+    }
+
 }

@@ -6,5 +6,5 @@ public interface ExchangeRateRepository {
 
     Iterable<ExchangeRateEntity> findAll();
 
-    ExchangeRateEntity findOne(String id);
+    ExchangeRateEntity findOne(Long id);
 }

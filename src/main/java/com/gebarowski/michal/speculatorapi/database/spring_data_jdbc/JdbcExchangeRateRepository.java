@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 @Repository
 public class JdbcExchangeRateRepository implements ExchangeRateRepository {
@@ -21,13 +23,22 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
     }
 
     @Override
-    public Iterable<ExchangeRateEntity> findAll() {
-        return null;
+    public Set<ExchangeRateEntity> findAll() {
+        return new HashSet<>(
+                this.jdbcTemplate.query(
+                        "SELECT * FROM EXCHANGE_RATE_HISTORY",
+                        this::mapRowToExchangeRateEntity
+                )
+        );
+
     }
 
     @Override
-    public ExchangeRateEntity findOne(String id) {
-        return this.jdbcTemplate.queryForObject("SELECT * FROM EXCHANGE_RATE_HISTORY WHERE ID=?", this::mapRowToExchangeRateEntity, id);
+    public ExchangeRateEntity findOne(final Long id) {
+        return this.jdbcTemplate.queryForObject(
+                "SELECT * FROM EXCHANGE_RATE_HISTORY WHERE ID=?",
+                this::mapRowToExchangeRateEntity, id
+        );
     }
 
     private ExchangeRateEntity mapRowToExchangeRateEntity(final ResultSet resultSet, final int rowNumber) throws SQLException {
@@ -40,6 +51,5 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
                 .bidPrice(resultSet.getString("bid_price"))
                 .askPrice(resultSet.getString("ask_price"))
                 .build();
-
     }
 }

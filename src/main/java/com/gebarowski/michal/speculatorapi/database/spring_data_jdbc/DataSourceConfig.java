@@ -2,7 +2,6 @@ package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
@@ -11,7 +10,6 @@ import javax.sql.DataSource;
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
 @Configuration
-@PropertySource("classpath:db/connection.properties")
 public class DataSourceConfig {
 
     @Bean
