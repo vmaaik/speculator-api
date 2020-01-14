@@ -1,5 +1,7 @@
-package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
+package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository;
 
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateEntity;
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository.ExchangeRateRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +32,6 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
                         this::mapRowToExchangeRateEntity
                 )
         );
-
     }
 
     @Override

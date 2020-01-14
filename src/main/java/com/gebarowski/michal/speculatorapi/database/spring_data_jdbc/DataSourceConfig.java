@@ -23,7 +23,7 @@ public class DataSourceConfig {
         return builder.setType(H2)
                 .addScript("db/schema.sql")
                 .addScript("db/data.sql")
-                .setName("ExchangeDb")
+                .setName("test")
                 .build();
     }
 }

@@ -33,5 +33,4 @@ public class ExchangeRateController {
     public ResponseEntity<ExchangeRateModel> getRate(@PathVariable final Long id) {
         return ResponseEntity.ok(this.exchangeRateService.getExchangeRate(id));
     }
-
 }

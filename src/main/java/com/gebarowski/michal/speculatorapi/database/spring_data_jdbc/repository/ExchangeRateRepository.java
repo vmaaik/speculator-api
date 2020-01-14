@@ -1,4 +1,6 @@
-package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
+package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository;
+
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateEntity;
 
 public interface ExchangeRateRepository {
 

@@ -1,7 +1,7 @@
 package com.gebarowski.michal.speculatorapi.service;
 
 import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateConverter;
-import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.JdbcExchangeRateRepository;
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository.JdbcExchangeRateRepository;
 import com.gebarowski.michal.speculatorapi.gateway.ExchangeRateServiceGateway;
 import com.gebarowski.michal.speculatorapi.model.ExchangeRateModel;
 import com.gebarowski.michal.speculatorapi.service.exception.CurrencyExchangeException;
