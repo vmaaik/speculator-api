@@ -62,4 +62,9 @@ class JdbcExchangeRateRepositoryTest {
 
         assertEquals(EXCHANGE_RATE_ENTITY_ID_2, result);
     }
+
+    @Test
+    void checkConsoleOutput() {
+        this.repository.logConvertedFromEur();
+    }
 }

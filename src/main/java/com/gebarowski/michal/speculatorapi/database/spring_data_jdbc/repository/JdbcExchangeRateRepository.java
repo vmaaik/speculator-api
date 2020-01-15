@@ -2,7 +2,6 @@ package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository
 
 import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -13,11 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 @Repository
-public class JdbcExchangeRateRepository implements ExchangeRateRepository, RowCallbackHandler {
+public class JdbcExchangeRateRepository implements ExchangeRateRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcExchangeRateRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcExchangeRateRepository(final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -69,17 +68,11 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository, RowCa
         );
     }
 
-    @Override
-    public void processRow(final ResultSet resultSet) throws SQLException {
-        mapRowToExchangeRateEntity(resultSet, resultSet.getRow()).setExchangeRate("0.00");
+    public void logConvertedFromEur() {
+        this.jdbcTemplate.query(
+                "SELECT * FROM EXCHANGE_RATE_HISTORY",
+                new CustomRowCallbackHandler());
     }
-
-//    public ExchangeRateEntity zeroExchangeRateVslue(final Long id) {
-//        return this.jdbcTemplate.queryForObject(
-//                "SELECT * FROM EXCHANGE_RATE_HISTORY WHERE ID=?",
-//                this,
-//                id);
-//    }
 
     private ExchangeRateEntity mapRowToExchangeRateEntity(final ResultSet resultSet, final int rowNumber) throws SQLException {
         return ExchangeRateEntity.builder()
