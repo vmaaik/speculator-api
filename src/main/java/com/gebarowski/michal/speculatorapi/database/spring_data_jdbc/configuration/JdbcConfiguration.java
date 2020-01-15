@@ -1,4 +1,4 @@
-package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository;
+package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

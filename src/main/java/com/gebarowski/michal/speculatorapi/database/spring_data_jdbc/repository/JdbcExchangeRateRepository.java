@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Repository
 public class JdbcExchangeRateRepository implements ExchangeRateRepository {
+    //TODO implement ResultSetExtractor
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -66,6 +67,11 @@ public class JdbcExchangeRateRepository implements ExchangeRateRepository {
         return this.jdbcTemplate.queryForList(
                 "SELECT * FROM EXCHANGE_RATE_HISTORY"
         );
+    }
+
+    @Override
+    public int deleteById(final Long id) {
+        return this.jdbcTemplate.update("DELETE FROM EXCHANGE_RATE_HISTORY WHERE ID=?", id);
     }
 
     public void logConvertedFromEur() {

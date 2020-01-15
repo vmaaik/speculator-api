@@ -16,4 +16,6 @@ public interface ExchangeRateRepository {
     Integer count();
 
     List<Map<String, Object>> findAllAsMaps();
+
+    int deleteById(final Long id);
 }

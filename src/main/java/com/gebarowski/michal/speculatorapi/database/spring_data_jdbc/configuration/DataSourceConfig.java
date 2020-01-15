@@ -1,4 +1,4 @@
-package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc;
+package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,4 +26,6 @@ public class DataSourceConfig {
                 .setName("test")
                 .build();
     }
+
+
 }

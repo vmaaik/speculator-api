@@ -1,8 +1,9 @@
 package com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.repository;
 
 import com.gebarowski.michal.speculatorapi.MotherTestData;
-import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.DataSourceConfig;
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.configuration.DataSourceConfig;
 import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.ExchangeRateEntity;
+import com.gebarowski.michal.speculatorapi.database.spring_data_jdbc.configuration.JdbcConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,13 @@ class JdbcExchangeRateRepositoryTest {
     }
 
     @Test
-    void checkConsoleOutput() {
+    void testRowCallbackHandler() {
         this.repository.logConvertedFromEur();
+    }
+
+    @Test
+    void deleteRecord() {
+        this.repository.deleteById(1L);
+        assertEquals(3, this.repository.findAll().size());
     }
 }
