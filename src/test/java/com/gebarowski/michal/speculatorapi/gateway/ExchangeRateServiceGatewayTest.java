@@ -1,7 +1,8 @@
 package com.gebarowski.michal.speculatorapi.gateway;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.IOException;
 
