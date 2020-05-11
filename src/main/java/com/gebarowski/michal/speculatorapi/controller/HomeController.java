@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestApacheController {
-
-    @GetMapping("/hello")
+public class HomeController {
+    // TODO Replace with swagger
+    @GetMapping("/")
     public ResponseEntity<String> message() {
-        return ResponseEntity.ok("Test");
+        return ResponseEntity.ok("Speculator API");
     }
 }

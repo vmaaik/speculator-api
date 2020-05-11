@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ExchangeRateService {
@@ -36,9 +38,17 @@ public class ExchangeRateService {
 
         final Currency from = getCurrencyInstance(currencyFrom);
         final Currency to = getCurrencyInstance(currencyTo);
-
-        return exchangeRateServiceGateway.getCurrencyExchangeRate(from, to)
+        ExchangeRateModel erm = exchangeRateServiceGateway.getCurrencyExchangeRate(from, to)
                 .getExchangeRateModel();
+        this.jdbcExchangeRateRepository.save(this.exchangeRateConverter.toEntity(erm));
+        return erm;
+    }
+
+    public Set<ExchangeRateModel> getAll() {
+        return this.jdbcExchangeRateRepository.findAll()
+                .stream()
+                .map(exchangeRateConverter::fromEntity)
+                .collect(Collectors.toSet());
     }
 
     public ExchangeRateModel getExchangeRate(final Long id) {
