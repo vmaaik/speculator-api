@@ -13,8 +13,6 @@
         <java.version>11</java.version>
         <org.springframework-version>5.2.6.RELEASE</org.springframework-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -157,6 +155,15 @@
 <!--                    <configuration>-->
 <!--                        <warName>speculator-api</warName>-->
 <!--                    </configuration>-->
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <source>11</source>
+                        <target>11</target>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
