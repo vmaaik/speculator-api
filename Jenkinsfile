@@ -1,9 +1,15 @@
 pipeline {
   agent any
   stages {
+    stage('Start') {
+      steps {
+        echo 'Starting build step'
+      }
+    }
+
     stage('Build') {
       steps {
-        git(url: 'https://github.com/vmaaik/speculator-api', branch: 'master')
+        sh 'mvn clean build'
       }
     }
 
