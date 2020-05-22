@@ -4,6 +4,7 @@ import com.gebarowski.michal.speculatorapi.gateway.ExchangeRateServiceGateway;
 import com.gebarowski.michal.speculatorapi.model.ExchangeRateModel;
 import com.gebarowski.michal.speculatorapi.response.ExchangeRateResponse;
 import com.gebarowski.michal.speculatorapi.service.exception.CurrencyExchangeException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,6 +36,7 @@ class ExchangeRateServiceTest {
     private ExchangeRateService exchangeRateService;
 
     @Test
+    @Disabled
     void returnsSuccessfulResponse() {
         when(this.exchangeRateServiceGateway.getCurrencyExchangeRate(CODE_EURO, CODE_PLN))
                 .thenReturn(buildExchangeRateResponse());
