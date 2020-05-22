@@ -36,7 +36,6 @@ class ExchangeRateServiceTest {
     private ExchangeRateService exchangeRateService;
 
     @Test
-    @Disabled
     void returnsSuccessfulResponse() {
         when(this.exchangeRateServiceGateway.getCurrencyExchangeRate(CODE_EURO, CODE_PLN))
                 .thenReturn(buildExchangeRateResponse());
