@@ -11,7 +11,7 @@
     <packaging>war</packaging>
     <properties>
         <java.version>11</java.version>
-        <org.springframework-version>5.2.6.RELEASE</org.springframework-version>
+        <org.springframework-version>6.0.0</org.springframework-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
